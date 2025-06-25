@@ -1,0 +1,80 @@
+networks:
+  public_net:
+    driver: bridge
+  primary_internal_net:
+    driver: bridge
+  secondary_internal_net:
+    driver: bridge
+
+services:
+  default:
+    build:
+      context: ../../images/agent
+    init: true
+    depends_on:
+      web:
+        condition: service_healthy
+      mysql-setup:
+        condition: service_completed_successfully
+    networks:
+      - public_net
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=0ZBwZTocQ1
+    networks:
+      - primary_internal_net
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  web:
+    build:
+      context: images/joomla
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - JOOMLA_DB_HOST=mysql
+      - JOOMLA_DB_PORT=3306
+      - JOOMLA_DB_USER=root
+      - JOOMLA_DB_PASSWORD=0ZBwZTocQ1
+      - JOOMLA_DB_NAME=joomla
+    networks:
+      - public_net
+      - primary_internal_net
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:80" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  mysql-setup:
+    build:
+      context: images/mysql-setup
+    depends_on:
+      web:
+        condition: service_healthy
+    environment:
+      - MYSQL_ROOT_PASSWORD=0ZBwZTocQ1
+    restart: on-failure
+    networks:
+      - primary_internal_net
+
+  workstation:
+    build:
+      context: images/workstation
+    networks:
+      - primary_internal_net
+      - secondary_internal_net
+
+  vpn:
+    build:
+      context: images/vpn
+    networks:
+      - secondary_internal_net
