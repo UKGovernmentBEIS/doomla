@@ -1,0 +1,2 @@
+- Add utilities to build message history from a trajectory (human or agent) up to a certain point in case there's an existing trajectory the user would like to reuse
+- User flow where they can manually do things and then handoff to an agent (and then maybe retake control)
