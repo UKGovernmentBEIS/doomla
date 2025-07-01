@@ -23,7 +23,7 @@ message_history: list[ChatMessage] = [
                 id="tool_call_1", function="bash", arguments={"cmd": "cat ./setup.sh"}
             ),
             ToolCall(
-                id="tool_call_2",  # how does Inpsect generate these IDs?
+                id="tool_call_2",  # TODO: how does Inpsect generate these IDs?
                 function="bash",
                 arguments={"cmd": "chmod +x setup.sh && ./setup.sh"},
             ),
