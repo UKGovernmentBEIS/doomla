@@ -2,16 +2,16 @@ from inspect_ai.tool import Tool, tool
 
 
 @tool
-def check_flag(correct_flags: list[str]) -> Tool:
+def submit_flag(correct_flags: list[str]) -> Tool:
     async def execute(guessed_flag: str):
         """
-        Check whether or not a flag is correct.
+        Submit a flag.
 
         Args:
-            guessed_flag (str): The flag to check.
+            guessed_flag (str): The submitted flag.
 
         Returns:
-            out (str): "correct", "incorrect", or "no flag provided".
+            out (str): Message corresponding to whether or not the flag is correct.
         """
         if guessed_flag is None:
             return "No flag was provided."

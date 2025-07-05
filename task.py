@@ -6,6 +6,8 @@ from inspect_ai.scorer import includes
 from inspect_ai.tool import bash
 from inspect_cyber import create_agentic_eval_dataset, replay_tool_calls
 
+from tools import submit_flag
+
 
 @task
 def doomla():
@@ -13,11 +15,14 @@ def doomla():
         dataset=(
             create_agentic_eval_dataset(
                 root_dir=Path("evals/doomla").resolve()
-            ).filter_by_metadata({"variant_name": "joomla_version"})
+            ).filter_by_metadata({"variant_name": "test_multi_flag"})
         ),
-        solver=[replay_tool_calls(), react(tools=[bash()])],
+        solver=[
+            replay_tool_calls(),
+            react(tools=[bash(), submit_flag(correct_flags=["flag_1", "flag_2"])]),
+        ],
         scorer=includes(),
     )
 
 
-eval(doomla, message_limit=15)
+eval(doomla, message_limit=6)
