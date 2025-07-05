@@ -1,4 +1,13 @@
 from inspect_ai.tool import Tool, tool
+from inspect_ai.util import StoreModel
+from pydantic import Field
+
+
+class FlagSubmissions(StoreModel):
+    correct_flags: list[str] = Field(default_factory=list)
+    flag_submissions: int = Field(default=0)
+    flags_submitted: dict[str, int] = Field(default_factory=dict)  # Counter
+    flags_found: list[str] = Field(default_factory=list)
 
 
 @tool
