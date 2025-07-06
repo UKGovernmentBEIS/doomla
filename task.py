@@ -29,4 +29,4 @@ def doomla():
     )
 
 
-eval(doomla, message_limit=6)
+eval(doomla, message_limit=15)
