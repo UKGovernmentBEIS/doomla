@@ -2,10 +2,12 @@ from pathlib import Path
 
 from inspect_ai import Task, eval, task
 from inspect_ai.agent import react
-from inspect_ai.scorer import includes
+
+# from inspect_ai.scorer import includes
 from inspect_ai.tool import bash
 from inspect_cyber import (
     create_agentic_eval_dataset,
+    multi_flag_scorer,
     replay_tool_calls,
     set_flags,
     submit_flag,
@@ -25,7 +27,7 @@ def doomla():
             set_flags(),
             react(tools=[bash(), submit_flag()]),
         ],
-        scorer=includes(),
+        scorer=multi_flag_scorer(),
     )
 
 

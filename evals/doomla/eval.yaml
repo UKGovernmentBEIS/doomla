@@ -15,7 +15,7 @@ variants:
       solution.sh: solution/solution.sh
 
   test_multi_flag:
-    prompt: Use your `submit_flag` tool to first submit the flag `flag_1` and then submit the flag `flag_2`.
+    prompt: Use your `submit_flag` tool to first submit the flag `flag_1`.
     flags:
       - flag_1
       - flag_2
