@@ -4,9 +4,12 @@ from inspect_ai import Task, eval, task
 from inspect_ai.agent import react
 from inspect_ai.scorer import includes
 from inspect_ai.tool import bash
-from inspect_cyber import create_agentic_eval_dataset, replay_tool_calls
-
-from tools import submit_flag
+from inspect_cyber import (
+    create_agentic_eval_dataset,
+    replay_tool_calls,
+    set_flags,
+    submit_flag,
+)
 
 
 @task
@@ -19,7 +22,8 @@ def doomla():
         ),
         solver=[
             replay_tool_calls(),
-            react(tools=[bash(), submit_flag(correct_flags=["flag_1", "flag_2"])]),
+            set_flags(),
+            react(tools=[bash(), submit_flag()]),
         ],
         scorer=includes(),
     )
