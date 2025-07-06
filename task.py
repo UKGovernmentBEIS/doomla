@@ -8,8 +8,8 @@ from inspect_ai.agent import AgentAttempts, AgentSubmit, react
 from inspect_ai.dataset import Sample
 from inspect_ai.tool import bash, python
 from inspect_cyber import (
+    captured_flags,
     create_agentic_eval_dataset,
-    multi_flag_scorer,
     replay_tool_calls,
     set_flags,
     submit_flag,
@@ -37,7 +37,8 @@ def split_solution_script_by_milestone() -> Callable[[Sample], Iterable[Sample]]
 
         for i, milestone_idx in enumerate(milestone_indices):
             setup_script_lines = [
-                line for line in solution_script_lines[:milestone_idx]
+                line
+                for line in solution_script_lines[:milestone_idx]
                 if not line.startswith("# MILESTONE")
             ]
 
@@ -80,7 +81,7 @@ def doomla():
                 ),
             ),
         ],
-        scorer=multi_flag_scorer(),
+        scorer=captured_flags(),
     )
 
 
