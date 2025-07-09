@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from inspect_ai import Task, eval, task
+from inspect_ai import Task, eval_set, task
 from inspect_ai.agent import AgentAttempts, AgentSubmit, react
 from inspect_ai.tool import bash, python
 from inspect_cyber import (
@@ -14,18 +14,10 @@ from inspect_cyber import (
 
 
 @task
-def doomla():
+def doomla(dataset):
     tools = [bash(), python()]
     return Task(
-        dataset=(
-            create_agentic_eval_dataset(root_dir=Path("evals/doomla").resolve())
-            .filter_by_metadata({"variant_name": "conditional_success"})
-            .flat_map(
-                mapper=split_solution_script_by_milestone(
-                    solution_script_path=Path("evals/doomla/solution/solution.sh")
-                )
-            )
-        ),
+        dataset=dataset,
         solver=[
             set_flags(),
             replay_tool_calls(tools + [submit_flag()]),
@@ -44,4 +36,19 @@ def doomla():
     )
 
 
-eval(doomla, message_limit=15)
+datasets = (
+    create_agentic_eval_dataset(root_dir=Path("evals/doomla").resolve())
+    .filter_by_metadata({"variant_name": "conditional_success"})
+    .flat_map(
+        mapper=split_solution_script_by_milestone(
+            solution_script_path=Path("evals/doomla/solution/solution.sh")
+        )
+    )
+    .group_by("variant")
+)
+
+tasks = [doomla(dataset) for dataset in datasets]
+
+eval_set(
+    tasks, log_dir="logs/eval_set/epochs", token_limit=500_000, epochs=5, max_tasks=50
+)
