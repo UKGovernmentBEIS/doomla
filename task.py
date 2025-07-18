@@ -47,8 +47,10 @@ datasets = (
     .group_by("variant")
 )
 
-tasks = [doomla(dataset) for dataset in datasets]
-
 eval_set(
-    tasks, log_dir="logs/eval_set/epochs", token_limit=500_000, epochs=5, max_tasks=50
+    tasks=[doomla(dataset) for dataset in datasets],
+    log_dir="logs/eval_set/plot",
+    token_limit=10_000,
+    epochs=2,
+    max_tasks=50,
 )
