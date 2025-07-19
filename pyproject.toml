@@ -27,6 +27,7 @@ types-pyyaml = "^6.0.12"
 optional = true
 [tool.poetry.group.aisi.dependencies]
 aisitools = {git = "ssh://git@github.com/AI-Safety-Institute/aisi-inspect-tools.git"}
+claudeup = {git = "ssh://git@github.com/AI-Safety-Institute/claudeup.git"}
 
 
 [build-system]
