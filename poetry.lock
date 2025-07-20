@@ -1210,7 +1210,7 @@ resolved_reference = "732fedeeb7238bfab3b961a978cf0f77aea67ab7"
 
 [[package]]
 name = "inspect_viz"
-version = "0.2.8.dev6"
+version = "0.2.8.dev13"
 description = "Data visualization for Inspect AI large language model evalutions."
 optional = false
 python-versions = ">=3.10"
@@ -1240,7 +1240,7 @@ doc = ["griffe", "jupyter", "markdown", "panflute", "pyyaml", "quarto-cli (==1.7
 type = "git"
 url = "https://github.com/meridianlabs-ai/inspect_viz"
 reference = "HEAD"
-resolved_reference = "387a4ae77e2e6de143a56a538851890934e8456c"
+resolved_reference = "7a154f55866a6f042091bea3789b01537ccdcc93"
 
 [[package]]
 name = "ipython"
