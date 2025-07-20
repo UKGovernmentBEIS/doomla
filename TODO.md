@@ -2,4 +2,3 @@
 - User flow where they can manually do things and then handoff to an agent (and then maybe retake control)
 - Fix the logic for finishing a task when all the flags are found. It feels clunky now in a few ways (e.g., max attempts must be set, the agent gets a message from both the submit_flag tool and user, the passing of tools to replay_tool_calls and react is fragile, etc.)
 - Don't have "you can do this message, keep going" message show when the agent correctly finds a flag.
-- Fix the fact that files aren't actually created in solution script (i.e., usernames and passwords)
