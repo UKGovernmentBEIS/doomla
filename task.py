@@ -49,9 +49,8 @@ datasets = (
 
 eval_set(
     tasks=[doomla(dataset) for dataset in datasets],
-    log_dir="logs/eval_set/k8s",
-    token_limit=10_000,
-    epochs=1,
+    log_dir="logs/eval_set/test_one_flag",
+    token_limit=30_000,
+    epochs=3,
     max_tasks=50,
-    sandbox="k8s",
 )
