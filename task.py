@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from inspect_ai import Task, eval_set, task
+from inspect_ai import Task, eval_set, task, eval
 from inspect_ai.agent import AgentAttempts, AgentSubmit, react
 from inspect_ai.tool import bash, python
 from inspect_cyber import (
@@ -15,7 +15,7 @@ from inspect_cyber import (
 
 @task
 def doomla(dataset):
-    tools = [bash(), python()]
+    tools = [bash(timeout=300), python(timeout=300)]
     return Task(
         dataset=dataset,
         solver=[
@@ -49,8 +49,14 @@ datasets = (
 
 eval_set(
     tasks=[doomla(dataset) for dataset in datasets],
-    log_dir="logs/eval_set/test_one_flag",
-    token_limit=30_000,
-    epochs=3,
-    max_tasks=50,
+    log_dir="logs/eval_set/one_flag_500k_5epochs",
+    token_limit=500_000,
+    epochs=5,
+    max_tasks=1,
+    model=[
+        "anthropic/claude-sonnet-4-20250514",
+        "anthropic/claude-3-7-sonnet-latest",
+        "anthropic/claude-3-5-sonnet-latest",
+    ],
+    max_connections=1,
 )

