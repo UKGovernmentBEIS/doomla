@@ -20,4 +20,5 @@ def doomla():
     )
 
 
-eval(doomla)
+if __name__ == "__main__":
+    eval(doomla)
