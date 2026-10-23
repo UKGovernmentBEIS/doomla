@@ -11,10 +11,6 @@
 
 - Start with X
 
-### Merging
-
-- [ ] Reviewers should leave it up to the author to merge.
-
 ### Testing
 
 ... How do we know this is working as expected? ...
