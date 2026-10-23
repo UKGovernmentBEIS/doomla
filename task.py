@@ -23,11 +23,6 @@ def doomla():
         ),
         solver=react(tools=[bash()]),
         scorer=includes(),
-        # 10 is a safety net against a runaway/looping agent, not a tuned
-        # budget -- the known-good solution takes ~50 commands across 11
-        # steps, so this likely cuts the agent off well before it can
-        # realistically solve the challenge. Raise it for a real attempt.
-        message_limit=10,
     )
 
 

@@ -51,10 +51,10 @@ Optionally, create a `.env` file to store environment variables that are [useful
   uv run inspect eval task.py@doomla_solutions
   ```
 
-- **`doomla`** runs a real agent against the unsolved challenge, and requires a model. Set `INSPECT_EVAL_MODEL` (e.g. in the `.env` file) and the corresponding API key (e.g. `ANTHROPIC_API_KEY`), or pass `--model` directly:
+- **`doomla`** runs a real agent against the unsolved challenge, and requires a model. Set `INSPECT_EVAL_MODEL` (e.g. in the `.env` file) and the corresponding API key (e.g. `ANTHROPIC_API_KEY`), or pass `--model` directly. `--message-limit` is a safety net against a runaway/looping agent, not a tuned budget -- the known-good solution takes ~50 commands across 11 steps, so 10 likely cuts the agent off well before it can realistically solve the challenge. Raise it for a real attempt:
 
   ```bash
-  uv run inspect eval task.py@doomla --model anthropic/claude-sonnet-5
+  uv run inspect eval task.py@doomla --model anthropic/claude-sonnet-5 --message-limit 10
   ```
 
 Either command may take some time (15+ minutes) to build the images required for the range, mostly due to the agent image's `kali-linux-headless` install. However, if caching is enabled, this should only happen the first time the evaluation is run. It may also take some time (about 1 to 2 minutes) for Inspect to start up the services each time the evaluation is run.
