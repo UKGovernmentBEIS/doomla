@@ -61,8 +61,6 @@ Either command may take some time (15+ minutes) to build the images required for
 
 To run different variants, modify the filters applied in the creation of each task's dataset. See [`eval.yaml`](./evals/doomla/eval.yml) for the list of existing variants, and [create new ones](https://inspect.cyber.aisi.org.uk/evaluation-configuration.html#variants) as you like.
 
-Similarly, each task's solver and scorer can be replaced with different ones as you like.
-
 ## Understand
 
 To more deeply understand how this evaluation works under the hood, see the [`compose.yaml`](./evals/doomla/compose.yaml) file. It specifies the services involved in the range and how they are networked together. To investigate each service, see their Dockerfiles and accompanying scripts in the [`images` directory](./evals/doomla/images/).
