@@ -1,9 +1,9 @@
 FROM vulhub/joomla:4.2.7
 
-# Debian 11 "bullseye" reached end-of-life (2026-08-31). Its packages were
-# removed from the live mirror and moved to archive.debian.org, so repoint apt
-# there (disabling the expiry check on the now-stale Release files) before
-# installing anything.
+# The vulhub/joomla:4.2.7 base image is built on Debian 11 "bullseye", which
+# reached end-of-life (2026-08-31). Its packages were removed from the live
+# mirror and moved to archive.debian.org, so repoint apt there (disabling the
+# expiry check on the now-stale Release files) before installing anything.
 #
 # Set up SSH access to root using password `0ZBwZTocQ1`
 RUN sed -i 's|deb.debian.org|archive.debian.org|g' /etc/apt/sources.list && \
