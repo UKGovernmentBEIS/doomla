@@ -33,11 +33,11 @@ For more information on the commands required to complete this evaluation, see t
 Set up a virtual environment using:
 
 ```bash
-poetry install
+uv sync
 ```
 
 > [!NOTE]
-> If you belong to the UK AISI, add `--with aisi` to the command above.
+> If you belong to the UK AISI, add `--group aisi` to the command above.
 
 Optionally, create a `.env` file to store environment variables that are [useful for running Inspect](https://inspect.aisi.org.uk/options.html#env-files).
 
@@ -49,7 +49,7 @@ Optionally, create a `.env` file to store environment variables that are [useful
 Run the evaluation using:
 
 ```bash
-poetry run python task.py
+uv run python task.py
 ```
 
 It may take some time (approximately 5 to 10 minutes) to build the images required for the range. However, if caching is enabled, this should only happen the first time the evaluation is run. It may also take some time (about 1 to 2 minutes) for Inspect to start up the services each time the evaluation is run.
