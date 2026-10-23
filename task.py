@@ -1,31 +1,46 @@
-"""Entry point for running the doomla evaluation."""
+"""Tasks for running and verifying the Doomla! cyber range."""
 
-import os
 from pathlib import Path
 
-from inspect_ai import Task, eval, task
+from inspect_ai import Task, task
 from inspect_ai.agent import react
 from inspect_ai.scorer import includes
 from inspect_ai.tool import bash
-from inspect_cyber import create_agentic_eval_dataset
-
-# Default to a mock model so the evaluation runs out of the box without an API
-# key. Set INSPECT_EVAL_MODEL (e.g. in a .env file) to use a real model.
-DEFAULT_MODEL = "mockllm/model"
+from inspect_cyber import create_agentic_eval_dataset, verify_solutions
 
 
 @task
 def doomla():
-    """Build the doomla task, which runs the `solution` dataset variant."""
+    """Run a real agent against the unsolved challenge. Requires a model.
+
+    Run with: inspect eval task.py@doomla --model anthropic/claude-sonnet-5
+    """
     return Task(
         dataset=(
             create_agentic_eval_dataset(
                 root_dir=Path("evals/doomla").resolve()
-            ).filter_by_metadata({"variant_name": "solution"})
+            ).filter_by_metadata({"variant_name": "example"})
         ),
         solver=react(tools=[bash()]),
         scorer=includes(),
     )
 
 
-eval(doomla, model=os.environ.get("INSPECT_EVAL_MODEL", DEFAULT_MODEL))
+@task
+def doomla_solutions():
+    """Run the challenge's solution script directly, with no model.
+
+    This is a quick, free sanity check that the range itself (images,
+    networking, credentials, etc.) is configured correctly.
+
+    Run with: inspect eval task.py@doomla_solutions
+    """
+    return Task(
+        dataset=(
+            create_agentic_eval_dataset(
+                root_dir=Path("evals/doomla").resolve()
+            ).filter_by_metadata({"variant_name": "solution"})
+        ),
+        solver=verify_solutions(),
+        scorer=includes(),
+    )

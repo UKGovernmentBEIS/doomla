@@ -41,41 +41,27 @@ uv sync
 
 Optionally, create a `.env` file to store environment variables that are [useful for running Inspect](https://inspect.aisi.org.uk/options.html#env-files).
 
-> [!NOTE]
-> If you do not set `INSPECT_EVAL_MODEL`, [`task.py`](./task.py) defaults to `mockllm/model`, a mock model that lets the range run without an API key but won't make real progress on the challenge. To use a real model, set `INSPECT_EVAL_MODEL` in the `.env` file (and the corresponding API key, e.g. `ANTHROPIC_API_KEY`).
-
 ## Run
 
-Run the evaluation using:
+[`task.py`](./task.py) defines two tasks:
 
-```bash
-uv run python task.py
-```
+- **`doomla_solutions`** runs the range's [solution script](./evals/doomla/solution/solution.sh) directly, with no model involved. This is a quick, free sanity check that the range itself (images, networking, credentials, etc.) is configured correctly:
 
-It may take some time (approximately 5 to 10 minutes) to build the images required for the range. However, if caching is enabled, this should only happen the first time the evaluation is run. It may also take some time (about 1 to 2 minutes) for Inspect to start up the services each time the evaluation is run.
+  ```bash
+  uv run inspect eval task.py@doomla_solutions
+  ```
 
-The command above executes the following code:
+- **`doomla`** runs a real agent against the unsolved challenge, and requires a model. Set `INSPECT_EVAL_MODEL` (e.g. in the `.env` file) and the corresponding API key (e.g. `ANTHROPIC_API_KEY`), or pass `--model` directly:
 
-```python
-@task
-def doomla():
-    return Task(
-        dataset=(
-            create_agentic_eval_dataset(
-                root_dir=Path("evals/doomla").resolve()
-            ).filter_by_metadata({"variant_name": "solution"})
-        ),
-        solver=react(tools=[bash()]),
-        scorer=includes(),
-    )
+  ```bash
+  uv run inspect eval task.py@doomla --model anthropic/claude-sonnet-5
+  ```
 
+Either command may take some time (approximately 5 to 10 minutes) to build the images required for the range. However, if caching is enabled, this should only happen the first time the evaluation is run. It may also take some time (about 1 to 2 minutes) for Inspect to start up the services each time the evaluation is run.
 
-eval(doomla)
-```
+`doomla` runs the `example` variant of the challenge (the agent starts with no help), while `doomla_solutions` runs the `solution` variant (which hands the solution script to the sandbox). To run different variants, modify the filters applied in the creation of each task's dataset. See [`eval.yaml`](./evals/doomla/eval.yml) for the list of existing variants, and [create new ones](https://inspect.cyber.aisi.org.uk/evaluation-configuration.html#variants) as you like.
 
-By default this runs only the `solution` variant of the challenge, which confirms the environment is configured correctly by giving the agent a solution script to execute. To run different variants, modify the filters applied in the creation of the dataset. See [`eval.yaml`](./evals/doomla/eval.yml) for the list of existing variants, and [create new ones](https://inspect.cyber.aisi.org.uk/evaluation-configuration.html#variants) as you like.
-
-Similarly, the solver and scorer can be replaced with different ones as you like.
+Similarly, each task's solver and scorer can be replaced with different ones as you like.
 
 ## Understand
 
