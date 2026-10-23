@@ -57,7 +57,7 @@ Optionally, create a `.env` file to store environment variables that are [useful
   uv run inspect eval task.py@doomla --model anthropic/claude-sonnet-5
   ```
 
-Either command may take some time (approximately 5 to 10 minutes) to build the images required for the range. However, if caching is enabled, this should only happen the first time the evaluation is run. It may also take some time (about 1 to 2 minutes) for Inspect to start up the services each time the evaluation is run.
+Either command may take some time (15+ minutes) to build the images required for the range, mostly due to the agent image's `kali-linux-headless` install. However, if caching is enabled, this should only happen the first time the evaluation is run. It may also take some time (about 1 to 2 minutes) for Inspect to start up the services each time the evaluation is run.
 
 `doomla` runs the `example` variant of the challenge (the agent starts with no help), while `doomla_solutions` runs the `solution` variant (which hands the solution script to the sandbox). To run different variants, modify the filters applied in the creation of each task's dataset. See [`eval.yaml`](./evals/doomla/eval.yml) for the list of existing variants, and [create new ones](https://inspect.cyber.aisi.org.uk/evaluation-configuration.html#variants) as you like.
 
