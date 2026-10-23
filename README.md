@@ -41,8 +41,8 @@ uv sync
 
 Optionally, create a `.env` file to store environment variables that are [useful for running Inspect](https://inspect.aisi.org.uk/options.html#env-files).
 
-> [!WARNING]
-> If you do not set `INSPECT_EVAL_MODEL` in a `.env` file, the Python script below will hang. Either set the variable in the `.env` file or include a `model` argument in the `eval()` function within [`task.py`](./task.py).
+> [!NOTE]
+> If you do not set `INSPECT_EVAL_MODEL`, [`task.py`](./task.py) defaults to `mockllm/model`, a mock model that lets the range run without an API key but won't make real progress on the challenge. To use a real model, set `INSPECT_EVAL_MODEL` in the `.env` file (and the corresponding API key, e.g. `ANTHROPIC_API_KEY`).
 
 ## Run
 
