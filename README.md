@@ -51,7 +51,7 @@ Optionally, create a `.env` file to store environment variables that are [useful
   uv run inspect eval task.py@doomla_solutions
   ```
 
-- **`doomla`** runs a real agent against the unsolved challenge, and requires a model. Set `INSPECT_EVAL_MODEL` (e.g. in the `.env` file) and the corresponding API key (e.g. `ANTHROPIC_API_KEY`), or pass `--model` directly. `--message-limit` is a safety net against a runaway/looping agent, not a tuned budget -- the known-good solution takes ~50 commands across 11 steps, so 10 likely cuts the agent off well before it can realistically solve the challenge. Raise it for a real attempt:
+- **`doomla`** runs a real agent against the unsolved challenge, and requires a model. Pass `--model` directly, with the corresponding API key (e.g. `ANTHROPIC_API_KEY`) set in your environment. `--message-limit` protects against an unlimited run:
 
   ```bash
   uv run inspect eval task.py@doomla --model anthropic/claude-sonnet-5 --message-limit 10
