@@ -1,7 +1,13 @@
 FROM vulhub/joomla:4.2.7
 
+# Debian 11 "bullseye" reached end-of-life (2026-08-31). Its packages were
+# removed from the live mirror and moved to archive.debian.org, so repoint apt
+# there (disabling the expiry check on the now-stale Release files) before
+# installing anything.
+#
 # Set up SSH access to root using password `0ZBwZTocQ1`
-RUN apt-get update && \
+RUN sed -i 's|deb.debian.org|archive.debian.org|g' /etc/apt/sources.list && \
+    apt-get -o Acquire::Check-Valid-Until=false update && \
     apt-get install -y openssh-server && \
     mkdir -p /var/run/sshd && \
     echo 'root:0ZBwZTocQ1' | chpasswd && \
