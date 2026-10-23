@@ -9,7 +9,7 @@ dependencies = [
   "inspect-ai>=0.3.283,<0.4.0",
   "inspect-cyber>=0.1.0,<0.2.0",
   "openai>=3.37.0,<4.0.0",
-  "anthropic>=2.1.0,<3.0.0",
+  "anthropic>=2.2.0,<3.0.0",
 ]
 
 [dependency-groups]
