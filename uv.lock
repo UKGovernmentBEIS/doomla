@@ -264,7 +264,7 @@ wheels = [
 
 [[package]]
 name = "anthropic"
-version = "2.2.0"
+version = "1.17.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyio" },
@@ -276,9 +276,9 @@ dependencies = [
     { name = "sniffio" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b2/15/6e79e28f4a04b54712d646d6156f2d0f74667e049d46c06388f6e3ee4890/anthropic-2.2.0.tar.gz", hash = "sha256:6b28d4b7299587a3a0edbcbd7431b0a06d749a2f4196efaf044fe6dc474ec144", size = 1849600, upload-time = "2026-10-23T13:10:33.258Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4e/66/4ec271f7607460005276bb09b0d1c749a9ed0cead35a488a8676f15ed6d5/anthropic-1.17.0.tar.gz", hash = "sha256:dcf77a74dde89a9fd12405fca798b012725a107f7c9488454234a74e275c2163", size = 1756371, upload-time = "2026-10-20T22:13:35.117Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f7/dc/f593c0d9ae20c0b738dac80db7129296060027d5e768af8d1c4585f8279b/anthropic-2.2.0-py3-none-any.whl", hash = "sha256:ba8388e843521b3eb3cfadf99ec415f13e124a8d1587236969b0a3d84e427d36", size = 2172150, upload-time = "2026-10-23T13:10:31.356Z" },
+    { url = "https://files.pythonhosted.org/packages/98/9d/b4d4e46ec05bf19bcfd46c1417337e7cf42b9ecb95c3c63f295e2e9fee4b/anthropic-1.17.0-py3-none-any.whl", hash = "sha256:ccb98b85e1a14f81cf1e2ba348393f341f342bad9e07e014f96c9b69f853aaa7", size = 2094718, upload-time = "2026-10-20T22:13:32.585Z" },
 ]
 
 [[package]]
@@ -654,8 +654,8 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "anthropic", specifier = ">=2.2.0,<3.0.0" },
-    { name = "inspect-ai", specifier = ">=0.3.283,<0.4.0" },
+    { name = "anthropic", specifier = ">=1.17.0,<2.0.0" },
+    { name = "inspect-ai", specifier = "==0.3.282" },
     { name = "inspect-cyber", specifier = ">=0.1.0,<0.2.0" },
     { name = "openai", specifier = ">=3.37.0,<4.0.0" },
 ]
@@ -1003,7 +1003,7 @@ wheels = [
 
 [[package]]
 name = "inspect-ai"
-version = "0.3.283"
+version = "0.3.282"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "agent-client-protocol" },
@@ -1048,9 +1048,9 @@ dependencies = [
     { name = "zipp" },
     { name = "zstandard" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/46/64/7b46c4d92d8e6a19a83ddb3ab0f167e836fa1265190051319d66d11547d2/inspect_ai-0.3.283.tar.gz", hash = "sha256:dfa3f48df6a580032510aa4e0497fadab76a3ba9b241b85373a44592d18f5861", size = 36550960, upload-time = "2026-10-21T20:50:42.402Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cf/c9/74715b79fdcd216d7143ebdf452084b0e59777430e51952f1df7221263de/inspect_ai-0.3.282.tar.gz", hash = "sha256:bf221c760f48fbaafdd01a99a2d5ffede9ff46cd97bad660ad0e91ddc34e98cd", size = 36571093, upload-time = "2026-10-19T21:37:35.029Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/0d/74/2e1b582123105e899480b9ae3d1ef1eea30bbd5ba7afd1df042250e0b413/inspect_ai-0.3.283-py3-none-any.whl", hash = "sha256:9a08f86879b878efc5a15408c1d5dcbfb2195c9ee1d69726bf5f060a4c36f1ed", size = 35227846, upload-time = "2026-10-21T20:50:39.031Z" },
+    { url = "https://files.pythonhosted.org/packages/65/a5/0dfeb7a58ffc24cdca8645fc32ce35078cb12646cc26a2e2090b13c1f87f/inspect_ai-0.3.282-py3-none-any.whl", hash = "sha256:0a074a75015eeecd8d7779511037dfad27eb4f9252ab4a22fc6aebda59bb9413", size = 35286876, upload-time = "2026-10-19T21:37:31.366Z" },
 ]
 
 [[package]]
