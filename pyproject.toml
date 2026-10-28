@@ -23,16 +23,8 @@ dev = [
   "ruff>=0.17.2,<0.18.0",
   "types-pyyaml>=6.0.12,<7.0.0",
 ]
-aisi = [
-  "aisitools",
-]
-
 [tool.uv]
 package = false
-
-[tool.uv.sources]
-aisitools = { git = "ssh://git@github.com/AI-Safety-Institute/aisi-inspect-tools.git" }
-
 
 [tool.ruff.lint]
 select = [

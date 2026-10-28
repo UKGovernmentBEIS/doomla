@@ -36,9 +36,6 @@ Set up a virtual environment using:
 uv sync
 ```
 
-> [!NOTE]
-> If you belong to the UK AISI, add `--group aisi` to the command above.
-
 Optionally, create a `.env` file to store environment variables that are [useful for running Inspect](https://inspect.aisi.org.uk/options.html#env-files).
 
 ## Run
